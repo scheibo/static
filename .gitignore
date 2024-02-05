@@ -1,0 +1,12 @@
+# Mac
+.DS_Store
+Thumbs.db
+.vscode
+
+# JS
+node_modules/
+dist/
+*package-lock.json
+*npm-debug.log
+.eslintcache
+.tsbuildinfo

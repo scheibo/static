@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang=en>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{{ description }}}">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="canonical" href="{{{ url }}}{{{ path }}}">
+  {{{ analytics }}}
+  <link rel="stylesheet" href="/{{{ stylesheet }}}">
+  <style>{{{ style }}}</style>
+</head>
+
+<body id="{{ id }}">
+
+  <header>{{{ header }}}</header>
+
+  <main>
+    {{{ content }}}
+  </main>
+
+  <footer>
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+      <img src="/cc.svg" alt="CC" />
+      <img src="/by.svg" alt="BY" />
+      <img src="/sa.svg" alt="SA" />
+    </a>
+  </footer>
+
+</body>
+
+<script>
+const pref = window.matchMedia('(prefers-color-scheme: dark)');
+pref.addEventListener('change', e => setTheme(e.matches ? 'dark' : 'light'));
+document.documentElement.setAttribute('data-theme', pref.matches ? 'dark' : 'light');
+
+{{{ script }}}
+</script>
+
+</html>

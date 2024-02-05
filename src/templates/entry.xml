@@ -1,0 +1,10 @@
+  <entry>
+    <title type="text">{{{ title }}}</title>
+    <link href="{{{ url }}}" rel="alternate" type="text/html" title="{{{ title }}}" />
+    <published>{{{ date }}}T00:00:00+00:00</published>
+    <updated>{{{ updated }}}T00:00:00+00:00</updated>
+    <id>{{{ url }}}</id>
+    <author><name>{{{ author }}}</name></author>
+    <summary type="html"><![CDATA[{{{ summary }}}]]></summary>
+    <content type="html" xml:base="{{{ url }}}"><![CDATA[{{{ content }}}]]></content>
+  </entry>

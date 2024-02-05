@@ -1,0 +1,43 @@
+{
+  "name": "site",
+  "version": "0.0.1",
+  "repository": "github:scheibo/static",
+  "license": "MIT",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "dependencies": {
+    "@djot/djot": "^0.2.5",
+    "@types/html-minifier": "^4.0.5",
+    "@types/katex": "^0.16.7",
+    "@types/morgan": "^1.9.9",
+    "@types/mustache": "^4.2.5",
+    "@types/node": "^20.11.10",
+    "@types/polka": "^0.5.7",
+    "chokidar": "^3.5.3",
+    "clean-css": "^5.3.3",
+    "esbuild": "^0.20.0",
+    "favicons": "^7.1.5",
+    "highlight.js": "^11.9.0",
+    "html-minifier": "^4.0.0",
+    "katex": "^0.16.9",
+    "morgan": "^1.10.0",
+    "mustache": "^4.2.0",
+    "polka": "^0.5.2",
+    "serve-static": "^1.15.0",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@pkmn/eslint-config": "^6.5.0",
+    "eslint": "^8.56.0"
+  },
+  "scripts": {
+    "lint": "eslint src --cache --ext ts",
+    "fix": "eslint src --fix --ext ts",
+    "clean": "rm -rf public build .tsbuildinfo .eslintcache",
+    "compile": "tsc -p .",
+    "test": "npm run compile && npm run lint"
+  },
+  "eslintConfig": {
+    "extends": "@pkmn"
+  }
+}
