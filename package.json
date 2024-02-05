@@ -33,7 +33,6 @@
   "scripts": {
     "lint": "eslint src --cache --ext ts",
     "fix": "eslint src --fix --ext ts",
-    "clean": "rm -rf public build .tsbuildinfo .eslintcache",
     "compile": "tsc -p .",
     "test": "npm run compile && npm run lint"
   },
