@@ -28,7 +28,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.render = void 0;
+exports.render = render;
 const path = __importStar(require("path"));
 const djot = __importStar(require("@djot/djot"));
 const katex_1 = __importDefault(require("katex"));
@@ -214,5 +214,4 @@ function render(raw, options = {}) {
         },
     });
 }
-exports.render = render;
 //# sourceMappingURL=html.js.map

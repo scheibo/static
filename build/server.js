@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.serve = void 0;
+exports.serve = serve;
 const child_process_1 = require("child_process");
 const os = __importStar(require("os"));
 const path = __importStar(require("path"));
@@ -93,5 +93,4 @@ function serve(port, root, fn) {
         console.log();
     });
 }
-exports.serve = serve;
 //# sourceMappingURL=server.js.map

@@ -1,9 +1,3 @@
-/// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
 import * as fs from 'fs';
 export declare const list: (dir: string) => string[];
 export declare const mkdir: (dir: string) => string | undefined;

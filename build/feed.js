@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.render = void 0;
+exports.render = render;
 const path = __importStar(require("path"));
 const template = __importStar(require("mustache"));
 const fs = __importStar(require("./fs"));
@@ -41,5 +41,4 @@ function render(root, data) {
     (0, map_1.map)(root, data.url, urls);
     fs.write(path.join(root, 'feed.xml'), template.render(FEED, { ...data, entries }));
 }
-exports.render = render;
 //# sourceMappingURL=feed.js.map

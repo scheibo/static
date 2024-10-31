@@ -23,12 +23,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.map = void 0;
+exports.map = map;
 const path = __importStar(require("path"));
 const fs = __importStar(require("./fs"));
 function map(root, domain, urls) {
     fs.write(path.join(root, 'sitemap.txt'), [domain, ...urls].join('\n'));
     fs.write(path.join(root, 'robots.txt'), `Sitemap: ${domain}sitemap.txt`);
 }
-exports.map = map;
 //# sourceMappingURL=map.js.map

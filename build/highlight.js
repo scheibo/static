@@ -5,7 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.highlight = exports.styles = void 0;
+exports.styles = void 0;
+exports.highlight = highlight;
 const highlight_js_1 = __importDefault(require("highlight.js"));
 exports.styles = {
     light: `
@@ -155,5 +156,4 @@ function highlight(source, language) {
     });
     return lines.join('\n');
 }
-exports.highlight = highlight;
 //# sourceMappingURL=highlight.js.map
