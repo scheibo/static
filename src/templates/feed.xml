@@ -7,5 +7,5 @@
   <title type="html">{{{ title }}}</title>
   <subtitle>{{{ subtitle }}}</subtitle>
   <author><name>{{{ author }}}</name></author>
-  {{{ entries }}}
+  {{ #entries }}{{{ . }}}{{ /entries }}
 </feed>
