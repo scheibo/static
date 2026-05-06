@@ -4,7 +4,7 @@
 import * as path from 'path';
 
 import * as djot from '@djot/djot';
-import type {AstNode, Visitor} from '@djot/djot/types/ast';
+import type {AstNode, Visitor} from '@djot/djot';
 import katex from 'katex';
 
 import {read} from './fs';

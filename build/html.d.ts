@@ -1,5 +1,5 @@
 import * as djot from '@djot/djot';
-import type { Visitor } from '@djot/djot/types/ast';
+import type { Visitor } from '@djot/djot';
 interface Options {
     assets?: string;
     save?: {
