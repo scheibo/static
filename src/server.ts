@@ -8,6 +8,8 @@ import morgan from 'morgan';
 import polka from 'polka';
 import srv from 'serve-static';
 
+import * as fs from './fs';
+
 export interface Directories {
   root: string;
   public?: string;
@@ -57,7 +59,8 @@ export function serve(port: number, root: string | Directories, fn?: (app: polka
   };
 
   build();
-  chokidar.watch(dirs.extra ? [dirs.static].concat(dirs.extra) : dirs.static).on('change', build);
+  const watch = (dirs.extra ? [dirs.static].concat(dirs.extra) : [dirs.static]).filter(fs.exists);
+  chokidar.watch(watch).on('change', build);
 
   if (fn) fn(app);
 

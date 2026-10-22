@@ -45,6 +45,7 @@ const esbuild_1 = __importDefault(require("esbuild"));
 const morgan_1 = __importDefault(require("morgan"));
 const polka_1 = __importDefault(require("polka"));
 const serve_static_1 = __importDefault(require("serve-static"));
+const fs = __importStar(require("./fs"));
 function serve(port, root, fn) {
     const dirs = typeof root === 'string' ? { root } : root;
     dirs.static ??= path.join(dirs.root, 'static');
@@ -85,7 +86,8 @@ function serve(port, root, fn) {
         }
     };
     build();
-    chokidar_1.default.watch(dirs.extra ? [dirs.static].concat(dirs.extra) : dirs.static).on('change', build);
+    const watch = (dirs.extra ? [dirs.static].concat(dirs.extra) : [dirs.static]).filter(fs.exists);
+    chokidar_1.default.watch(watch).on('change', build);
     if (fn)
         fn(app);
     app.listen(port, () => {
