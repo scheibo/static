@@ -1,11 +1,6 @@
 import * as crypto from 'crypto';
 import * as fs from 'fs';
-import * as os from 'os';
 import * as path from 'path';
-
-const prefix = `${path.basename(process.cwd())}-`;
-const TMP = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
-process.on('exit', () => fs.rmSync(TMP, {recursive: true, force: true}));
 
 export const list = (dir: string) => fs.readdirSync(dir);
 export const mkdir = (dir: string) => fs.mkdirSync(dir, {recursive: true});
@@ -14,6 +9,12 @@ export const remove = (file: string) => fs.rmSync(file, {recursive: true, force:
 export const exists = (file: string) => fs.existsSync(file);
 export const stat = (file: string) => fs.statSync(file);
 export const read = (file: string) => fs.readFileSync(file, 'utf8');
+
+const build = path.join(process.cwd(), 'build');
+mkdir(build);
+const TMP = fs.mkdtempSync(path.join(build, '.tmp-'));
+process.on('exit', () => remove(TMP));
+
 export const write = (file: string, data: string | NodeJS.ArrayBufferView) => {
   const tmp = path.join(TMP, crypto.randomBytes(16).toString('hex'));
   try {
