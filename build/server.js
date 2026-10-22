@@ -85,7 +85,7 @@ function serve(port, root, fn) {
         }
     };
     build();
-    chokidar_1.default.watch(dirs.static).on('change', build);
+    chokidar_1.default.watch(dirs.extra ? [dirs.static].concat(dirs.extra) : dirs.static).on('change', build);
     if (fn)
         fn(app);
     app.listen(port, () => {

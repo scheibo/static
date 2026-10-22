@@ -3,6 +3,7 @@ export interface Directories {
     root: string;
     public?: string;
     static?: string;
+    extra?: string | string[];
     out?: string;
 }
 export declare function serve(port: number, root: string | Directories, fn?: (app: polka.Polka) => void): void;

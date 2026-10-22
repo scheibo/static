@@ -12,6 +12,7 @@ export interface Directories {
   root: string;
   public?: string;
   static?: string;
+  extra?: string | string[];
   out?: string;
 }
 
@@ -56,7 +57,7 @@ export function serve(port: number, root: string | Directories, fn?: (app: polka
   };
 
   build();
-  chokidar.watch(dirs.static).on('change', build);
+  chokidar.watch(dirs.extra ? [dirs.static].concat(dirs.extra) : dirs.static).on('change', build);
 
   if (fn) fn(app);
 
