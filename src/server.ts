@@ -35,14 +35,20 @@ export function serve(port: number, root: string | Directories, fn?: (app: polka
     const begin = process.hrtime.bigint();
     try {
       const outdir = dirs.out ?? path.join(dirs.root, 'build');
-      esbuild.buildSync({
-        entryPoints: [path.join(dirs.static!, '*.ts')],
-        outdir,
-        bundle: false,
-        platform: 'node',
-        format: 'cjs',
-        sourcemap: true,
-      });
+      const entryPoints = fs.list(dirs.static!)
+        .filter(f => /\.tsx?$/.test(f) && !f.endsWith('.d.ts'))
+        .map(f => path.join(dirs.static!, f));
+      if (entryPoints.length) {
+        esbuild.buildSync({
+          entryPoints,
+          outdir,
+          bundle: false,
+          platform: 'node',
+          format: 'cjs',
+          sourcemap: true,
+          absWorkingDir: dirs.root,
+        });
+      }
       const compile = `${(Math.round(Number(process.hrtime.bigint() - begin) / 1e6))} ms`;
       execFileSync('node', [`${outdir}/build.js`, '--rebuild'], {
         encoding: 'utf8',
@@ -65,7 +71,7 @@ export function serve(port: number, root: string | Directories, fn?: (app: polka
   if (fn) fn(app);
 
   app.listen(port, () => {
-    if (process.env.NODE_ENV !== 'development') return;
+    if (process.env.NODE_ENV === 'production') return;
 
     console.log('\x1b[33mAvailable on:\x1b[0m');
     const interfaces = os.networkInterfaces();

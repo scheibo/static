@@ -60,14 +60,20 @@ function serve(port, root, fn) {
         const begin = process.hrtime.bigint();
         try {
             const outdir = dirs.out ?? path.join(dirs.root, 'build');
-            esbuild_1.default.buildSync({
-                entryPoints: [path.join(dirs.static, '*.ts')],
-                outdir,
-                bundle: false,
-                platform: 'node',
-                format: 'cjs',
-                sourcemap: true,
-            });
+            const entryPoints = fs.list(dirs.static)
+                .filter(f => /\.tsx?$/.test(f) && !f.endsWith('.d.ts'))
+                .map(f => path.join(dirs.static, f));
+            if (entryPoints.length) {
+                esbuild_1.default.buildSync({
+                    entryPoints,
+                    outdir,
+                    bundle: false,
+                    platform: 'node',
+                    format: 'cjs',
+                    sourcemap: true,
+                    absWorkingDir: dirs.root,
+                });
+            }
             const compile = `${(Math.round(Number(process.hrtime.bigint() - begin) / 1e6))} ms`;
             (0, child_process_1.execFileSync)('node', [`${outdir}/build.js`, '--rebuild'], {
                 encoding: 'utf8',
@@ -91,7 +97,7 @@ function serve(port, root, fn) {
     if (fn)
         fn(app);
     app.listen(port, () => {
-        if (process.env.NODE_ENV !== 'development')
+        if (process.env.NODE_ENV === 'production')
             return;
         console.log('\x1b[33mAvailable on:\x1b[0m');
         const interfaces = os.networkInterfaces();
